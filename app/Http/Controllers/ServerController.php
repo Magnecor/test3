@@ -71,9 +71,10 @@ class ServerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Server $server)
     {
-        //
+        $server->update($request->all());//
+        return redirect('admin/games')->with('success', 'Сервер успешно обновлен');
     }
 
     /**
