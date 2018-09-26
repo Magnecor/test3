@@ -10,9 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('games','GamesController');
-
+Route::resource('admin/games','GameController', ['middleware'=> ['auth']]);
+Route::resource('admin/servers','ServerController', ['middleware'=> ['auth']]);
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

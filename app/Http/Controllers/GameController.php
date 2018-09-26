@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Server;
+use App\Game;
 
-class GamesController extends Controller
+class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,11 @@ class GamesController extends Controller
      */
     public function index()
     {
-      $games=\App\Games::all();
-       return view('index',compact('games'));  //
+
+       return view('games.index', ['games' => Game::get(), 'servers' => Server::get()
+
+
+     ]);  //
     }
 
     /**
@@ -24,7 +29,7 @@ class GamesController extends Controller
      */
     public function create()
     {
-      return view('create');  //
+      return view('games.create');  //
     }
 
     /**
@@ -37,13 +42,13 @@ class GamesController extends Controller
     {
 
 
-       $games= new \App\Games;
+       $games= new \App\Game;
        $games->title=$request->get('title');
-       $games->sort=$request->get('sort');
-       $games->filename=$request->get('filename');
+       $games->sort=$request->get('sort');  
        $games->save();
 
-       return redirect('games')->with('success', 'Игра успешно добавлена');  //
+
+       return redirect('admin/games')->with('success', 'Игра успешно добавлена');  //
     }
 
     /**
@@ -52,9 +57,9 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Game $games)
     {
-        //
+        return view('admin/games', ['game' => $game]);//
     }
 
     /**
@@ -65,8 +70,8 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-      $games = \App\Games::find($id);
-        return view('edit',compact('games','id'));  //
+      $games = \App\Game::find($id);
+        return view('games.edit',compact('games','id'));  //
     }
 
     /**
@@ -78,11 +83,11 @@ class GamesController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $games= \App\Games::find($id);
+      $games= \App\Game::find($id);
         $games->title=$request->get('title');
         $games->sort=$request->get('sort');
         $games->save();
-        return redirect('games');  //
+        return redirect('admin/games');  //
     }
 
     /**
@@ -93,8 +98,8 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-      $games = \App\Games::find($id);
+      $games = \App\Game::find($id);
          $games->delete();
-         return redirect('games')->with('success', 'Успешно удалена игра -' . "$games->title");    //
+         return redirect('admin/games')->with('success', 'Успешно удалена игра -' . "$games->title");    //
     }
 }

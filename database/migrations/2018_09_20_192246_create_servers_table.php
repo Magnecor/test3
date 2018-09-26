@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGamesTable extends Migration
+class CreateServersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('servers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->integer('sort');
+            $table->integer('games_id')->unsigned();
             $table->timestamps();
-
+            $table->foreign('games_id')->references('id')->on('games')->onDelete('cascade');
         });
     }
 
@@ -29,6 +30,6 @@ class CreateGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('servers');
     }
 }
