@@ -12,10 +12,10 @@
 */
 Route::resource('admin/games','GameController', ['middleware'=> ['auth']]);
 Route::resource('admin/servers','ServerController', ['middleware'=> ['auth']]);
+Route::resource('/','IndexСontroller');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
 
 Auth::routes();
 
