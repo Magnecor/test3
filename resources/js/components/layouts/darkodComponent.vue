@@ -1,45 +1,31 @@
 
 <template>
   <div class="row">
-
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">@</span>
+    <div class="alert alert-success" role="alert">
+      {{ itog }}
     </div>
-    <input type="text" class="form-control" placeholder="Имя пользователя" aria-label="Имя пользователя" aria-describedby="basic-addon1">
-  </div>
 
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Имя получателя" aria-label="Имя получателя" aria-describedby="basic-addon2">
-    <div class="input-group-append">
-      <span class="input-group-text" id="basic-addon2">@example.com</span>
-    </div>
-  </div>
 
-  <label for="basic-url">Your vanity URL</label>
+    <input type="text" class="form-control" placeholder="Ваш игровой ник" v-model="nick_clienta">
+  </div>
   <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-    </div>
-    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+  <input type="text" class="form-control" v-model="sert_title" placeholder="Введите подарочный код">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" id="" @click="addSert">Добавить</button>
   </div>
+</div>
+<h2>Добавленные коды:</h2>
+<div class="input-group mb-3" v-for="(sert, index) in serts" :id="index">
+  <div class="input-group-prepend">
+   <label class="input-group-text">{{ vklad_save[index] }}</label>
+ </div>
+<input type="text" class="form-control" :value="sert" :placeholder="sert" readonly >
+<div class="input-group-append">
+  <button class="btn btn-outline-secondary" type="button" :id="index" @click="delsert">Удалить</button>
+</div>
+</div>
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">$</span>
-    </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-    <div class="input-group-append">
-      <span class="input-group-text">.00</span>
-    </div>
-  </div>
-
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">With textarea</span>
-    </div>
-    <textarea class="form-control" aria-label="With textarea"></textarea>
   </div>
 
 
@@ -57,14 +43,20 @@
     export default {
 
       props: [
-
+    'vklad',
+    'nominal'
    ],
 
 
 data: function() {
 
 return {
-
+nick_clienta: '',
+sert_title: '',
+serts: [],
+vklad_save: [],
+nominal_save: [],
+summa: ''
 }
 
 },
@@ -73,6 +65,23 @@ created() {
   },
 
   methods: {
+    addSert() {
+  this.vklad_save.push(this.vklad)
+  this.serts.push(this.sert_title)
+  this.nominal_save.push(this.nominal)
+  console.log(this.serts)
+  console.log(this.vklad_save)
+  console.log(this.nominal_save)
+
+},
+delsert()
+{
+  this.serts.splice(event.target.id, 1);
+  this.vklad_save.splice(event.target.id, 1);
+  this.nominal_save.splice(event.target.id, 1);
+
+}
+
 
 
 
@@ -80,6 +89,13 @@ created() {
             },
 
   computed: {
+itog() {
+  var summ = 0;
+for(var i = 0; i < this.nominal_save.length; i++){
+    summ += this.nominal_save[i];
+}
+  return summ
+}
 
 
             },

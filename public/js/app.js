@@ -17686,7 +17686,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(36);
-module.exports = __webpack_require__(110);
+module.exports = __webpack_require__(119);
 
 
 /***/ }),
@@ -17716,10 +17716,10 @@ Vue.component('ajax-component', __webpack_require__(95));
 Vue.component('socketchat-component', __webpack_require__(98));
 Vue.component('new-component', __webpack_require__(101));
 Vue.component('new1-component', __webpack_require__(104));
-Vue.component('serversselect-component', __webpack_require__(118));
-Vue.component('gamesselect-component', __webpack_require__(115));
-Vue.component('daraden-component', __webpack_require__(121));
-Vue.component('darkod-component', __webpack_require__(124));
+Vue.component('serversselect-component', __webpack_require__(107));
+Vue.component('gamesselect-component', __webpack_require__(110));
+Vue.component('daraden-component', __webpack_require__(113));
+Vue.component('darkod-component', __webpack_require__(116));
 var app = new Vue({
   el: '#app'
 });
@@ -58183,212 +58183,15 @@ if (false) {
 }
 
 /***/ }),
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(116)
+var __vue_script__ = __webpack_require__(108)
 /* template */
-var __vue_template__ = __webpack_require__(117)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/GamesSelectComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-36c3af4b", Component.options)
-  } else {
-    hotAPI.reload("data-v-36c3af4b", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 116 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-  data: function data() {
-
-    return {
-      listgames: [],
-      listservers: [],
-      select_game: '',
-      games_id: '',
-      sel_game: false
-
-    };
-  },
-  created: function created() {
-    this.getGames();
-  },
-
-
-  methods: {
-    getGames: function getGames() {
-      var _this = this;
-
-      axios.get('/start/get-jsongames').then(function (response) {
-        _this.listgames = response.data;
-        console.log(response);
-      });
-      axios.get('/start/get-jsonserv').then(function (response) {
-        _this.listservers = response.data;
-        console.log(response);
-      });
-    },
-    selectgame: function selectgame(value) {
-      this.select_game = event.target.title; // присвоили название выбранной игры переменной select_game чтоб выводить вместе с игрой в selected()
-      this.games_id = event.target.id; // присовили ид игры в перменную games_id
-      this.sel_game = true;
-    }
-  },
-
-  computed: {},
-
-  filters: {},
-  watch: {}
-
-});
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
-    _c("h1", [_vm._v("Выберите игру:")]),
-    _vm._v(" "),
-    _c("br"),
-    _c("br"),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _vm._l(_vm.listgames, function(game) {
-          return _c(
-            "div",
-            {
-              staticClass: "h2 col-sm list-group-item list-group-item-action",
-              attrs: { id: game.id, title: game.title },
-              on: { click: _vm.selectgame }
-            },
-            [_vm._v("\n\n\n       " + _vm._s(game.title) + "\n     ")]
-          )
-        }),
-        _vm._v(" "),
-        _c("serversselect-component", {
-          attrs: {
-            select_game: _vm.select_game,
-            games_id: _vm.games_id,
-            sel_game: _vm.sel_game,
-            listservers: _vm.listservers
-          }
-        })
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-36c3af4b", module.exports)
-  }
-}
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(119)
-/* template */
-var __vue_template__ = __webpack_require__(120)
+var __vue_template__ = __webpack_require__(109)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58427,7 +58230,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 119 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58556,17 +58359,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       listgames: [],
       select_serv: '',
-      select_kod: '',
       servers_id: '',
       sel_serv: false,
       sertdar: false,
-      sel_darkod: '',
-      server_title: 'Выберите сервер'
+      sel_darkod: 1,
+      server_title: 'Выберите сервер',
+      nominal: '',
+      vklad: ''
+
     };
   },
 
   methods: {
     selectserv: function selectserv(value) {
+
       this.select_serv = event.target.title; // присвоили название выбранной игры переменной select_game чтоб выводить вместе с игрой в selected()
       this.server_title = event.target.title;
       this.servers_id = event.target.id; // присовили ид род сервера в перменную servers_id
@@ -58580,16 +58386,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log(this.sel_darkod);
     },
     selectkods: function selectkods(value) {
-
-      this.select_kod = event.target.id;
-      console.log('Нажали на код' + this.select_kod);
+      this.vklad = event.target.id;
+      this.nominal = parseInt(event.target.abbr);
+      console.log('Нажали на код' + this.vklad + ' ' + 'его стоимость ' + parseInt(event.target.abbr));
     }
   },
 
   computed: {
     selected: function selected() {
 
-      return this.select_game + ' - ' + this.select_serv + ' - ' + this.select_kod;
+      return this.select_game + ' - ' + this.select_serv + ' - ' + this.vklad;
     }
   },
 
@@ -58599,7 +58405,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 120 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -58615,75 +58421,71 @@ var render = function() {
     _c("br"),
     _c("br"),
     _vm._v(" "),
-    _vm.sel_game
-      ? _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "dropdown" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-secondary dropdown-toggle",
-                attrs: {
-                  href: "#",
-                  role: "button",
-                  id: "dropdownMenuLink",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "false"
-                }
-              },
-              [_vm._v("\n      " + _vm._s(_vm.server_title) + "\n   ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "dropdown-menu",
-                attrs: { "aria-labelledby": "dropdownMenuLink" }
-              },
-              _vm._l(_vm.listservers, function(server) {
-                return _vm.games_id == server.games_id
-                  ? _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-item",
-                        attrs: { id: server.id, title: server.title },
-                        on: { click: _vm.selectserv }
-                      },
-                      [_vm._v("   " + _vm._s(server.title))]
-                    )
-                  : _vm._e()
-              })
-            )
-          ])
-        ])
-      : _vm._e(),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "dropdown" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-secondary dropdown-toggle",
+            attrs: {
+              href: "#",
+              role: "button",
+              id: "dropdownMenuLink",
+              "data-toggle": "dropdown",
+              "aria-haspopup": "true",
+              "aria-expanded": "false"
+            }
+          },
+          [_vm._v("\n      " + _vm._s(_vm.server_title) + "\n   ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "dropdownMenuLink" }
+          },
+          _vm._l(_vm.listservers, function(server) {
+            return _vm.games_id == server.games_id
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: { id: server.id, title: server.title },
+                    on: { click: _vm.selectserv }
+                  },
+                  [_vm._v("   " + _vm._s(server.title))]
+                )
+              : _vm._e()
+          })
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("br"),
     _c("br"),
     _vm._v(" "),
-    _vm.sertdar
-      ? _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            {
-              staticClass: "h2 col-sm list-group-item list-group-item-action",
-              attrs: { id: "1" },
-              on: { click: _vm.selectdar }
-            },
-            [_vm._v("\n           Хочу подарить код\n         ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "h2 col-sm list-group-item list-group-item-action",
-              attrs: { id: "2" },
-              on: { click: _vm.selectdar }
-            },
-            [_vm._v("\n          Хочу подарить адену\n        ")]
-          )
-        ])
-      : _vm._e(),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        {
+          staticClass: "h2 col-sm list-group-item list-group-item-action",
+          attrs: { id: "1" },
+          on: { click: _vm.selectdar }
+        },
+        [_vm._v("\n           Хочу подарить код\n         ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "h2 col-sm list-group-item list-group-item-action",
+          attrs: { id: "2" },
+          on: { click: _vm.selectdar }
+        },
+        [_vm._v("\n          Хочу подарить адену\n        ")]
+      )
+    ]),
     _vm._v(" "),
     _c("br"),
     _c("br"),
@@ -58693,173 +58495,181 @@ var render = function() {
     _c("br"),
     _c("br"),
     _vm._v(" "),
-    _vm.sel_serv
-      ? _c(
-          "div",
-          { staticClass: "row" },
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _c(
+          "table",
+          { staticClass: "table" },
           [
-            _c(
-              "table",
-              { staticClass: "table" },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _vm._l(_vm.listservers, function(server) {
-                  return _vm.servers_id == server.id
-                    ? _c("tbody", [
-                        _vm.sel_darkod == 1
-                          ? _c("tr", [
-                              _c("th", { attrs: { scope: "row" } }, [
-                                _vm._v("Быстрая")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk_300 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk_300))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk_500 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk_500))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk_3000 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk_3000))]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.sel_darkod == 1
-                          ? _c("tr", [
-                              _c("th", { attrs: { scope: "row" } }, [
-                                _vm._v("Ожидание")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk_3001 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk_3001))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk_5001 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk_5001))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk_30001 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk_30001))]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.sel_darkod == 2
-                          ? _c("tr", [
-                              _c("th", { attrs: { scope: "row" } }, [
-                                _vm._v("Быстрая")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk1_300 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk1_300))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk2_500 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk2_500))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk3_3000 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk3_3000))]
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.sel_darkod == 2
-                          ? _c("tr", [
-                              _c("th", { attrs: { scope: "row" } }, [
-                                _vm._v("Ожидание")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk1_3001 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk1_3001))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk2_5001 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk2_5001))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                {
-                                  attrs: { id: server.vk3_30001 },
-                                  on: { click: _vm.selectkods }
-                                },
-                                [_vm._v(" " + _vm._s(server.vk3_30001))]
-                              )
-                            ])
-                          : _vm._e()
-                      ])
-                    : _vm._e()
-                })
-              ],
-              2
-            ),
+            _vm._m(0),
             _vm._v(" "),
-            _vm.sel_darkod == 1 ? _c("darkod-component") : _vm._e(),
-            _vm._v(" "),
-            _c("daraden-component", { attrs: { else: "" } })
+            _vm._l(_vm.listservers, function(server) {
+              return _vm.servers_id == server.id
+                ? _c("tbody", [
+                    _vm.sel_darkod == 1
+                      ? _c("tr", [
+                          _c("th", { attrs: { scope: "row" } }, [
+                            _vm._v("Быстрая")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 1, abbr: server.vk_300 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk_300))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 2, abbr: server.vk_500 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk_500))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 3, abbr: server.vk_3000 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk_3000))]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.sel_darkod == 1
+                      ? _c("tr", [
+                          _c("th", { attrs: { scope: "row" } }, [
+                            _vm._v("Ожидание")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 11, abbr: server.vk_3001 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk_3001))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 22, abbr: server.vk_5001 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk_5001))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 33, abbr: server.vk_30001 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk_30001))]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.sel_darkod == 2
+                      ? _c("tr", [
+                          _c("th", { attrs: { scope: "row" } }, [
+                            _vm._v("Быстрая")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 4, abbr: server.vk1_300 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk1_300))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 5, abbr: server.vk2_500 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk2_500))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 6, abbr: server.vk3_3000 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk3_3000))]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.sel_darkod == 2
+                      ? _c("tr", [
+                          _c("th", { attrs: { scope: "row" } }, [
+                            _vm._v("Ожидание")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 44, abbr: server.v1_3001 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk1_3001))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 55, abbr: server.vk2_5001 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk2_5001))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              attrs: { id: 66, abbr: server.vk3_30001 },
+                              on: { click: _vm.selectkods }
+                            },
+                            [_vm._v(" " + _vm._s(server.vk3_30001))]
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
+            })
           ],
-          1
-        )
-      : _vm._e(),
+          2
+        ),
+        _vm._v(" "),
+        _c("darkod-component", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.sel_darkod == 1,
+              expression: "sel_darkod == 1"
+            }
+          ],
+          attrs: { vklad: _vm.vklad, nominal: _vm.nominal }
+        }),
+        _vm._v(" "),
+        _c("daraden-component", { attrs: { else: "" } })
+      ],
+      1
+    ),
     _vm._v(" "),
     _c("br"),
     _c("br"),
@@ -58897,15 +58707,202 @@ if (false) {
 }
 
 /***/ }),
-/* 121 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(122)
+var __vue_script__ = __webpack_require__(111)
 /* template */
-var __vue_template__ = __webpack_require__(123)
+var __vue_template__ = __webpack_require__(112)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/GamesSelectComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-36c3af4b", Component.options)
+  } else {
+    hotAPI.reload("data-v-36c3af4b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  data: function data() {
+
+    return {
+      listgames: [],
+      listservers: [],
+      select_game: '',
+      games_id: '',
+      sel_game: false
+
+    };
+  },
+  created: function created() {
+    this.getGames();
+  },
+
+
+  methods: {
+    getGames: function getGames() {
+      var _this = this;
+
+      axios.get('/start/get-jsongames').then(function (response) {
+        _this.listgames = response.data;
+        console.log(response);
+      });
+      axios.get('/start/get-jsonserv').then(function (response) {
+        _this.listservers = response.data;
+        console.log(response);
+      });
+    },
+    selectgame: function selectgame(value) {
+      this.select_game = event.target.title; // присвоили название выбранной игры переменной select_game чтоб выводить вместе с игрой в selected()
+      this.games_id = event.target.id; // присовили ид игры в перменную games_id
+      this.sel_game = true;
+    }
+  },
+
+  computed: {},
+
+  filters: {},
+  watch: {}
+
+});
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("h1", [_vm._v("Выберите игру:")]),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _vm._l(_vm.listgames, function(game) {
+          return _c(
+            "div",
+            {
+              staticClass: "h2 col-sm list-group-item list-group-item-action",
+              attrs: { id: game.id, title: game.title },
+              on: { click: _vm.selectgame }
+            },
+            [_vm._v("\n\n\n       " + _vm._s(game.title) + "\n     ")]
+          )
+        }),
+        _vm._v(" "),
+        _c("serversselect-component", {
+          attrs: {
+            select_game: _vm.select_game,
+            games_id: _vm.games_id,
+            sel_game: _vm.sel_game,
+            listservers: _vm.listservers
+          }
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-36c3af4b", module.exports)
+  }
+}
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(114)
+/* template */
+var __vue_template__ = __webpack_require__(115)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58944,7 +58941,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 122 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58980,7 +58977,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 123 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -59000,15 +58997,15 @@ if (false) {
 }
 
 /***/ }),
-/* 124 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(125)
+var __vue_script__ = __webpack_require__(117)
 /* template */
-var __vue_template__ = __webpack_require__(126)
+var __vue_template__ = __webpack_require__(118)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -59047,7 +59044,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 125 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59089,152 +59086,173 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-          props: [],
+  props: ['vklad', 'nominal'],
 
-          data: function data() {
+  data: function data() {
 
-                    return {};
-          },
-          created: function created() {},
+    return {
+      nick_clienta: '',
+      sert_title: '',
+      serts: [],
+      vklad_save: [],
+      nominal_save: [],
+      summa: ''
+    };
+  },
+  created: function created() {},
 
 
-          methods: {},
+  methods: {
+    addSert: function addSert() {
+      this.vklad_save.push(this.vklad);
+      this.serts.push(this.sert_title);
+      this.nominal_save.push(this.nominal);
+      console.log(this.serts);
+      console.log(this.vklad_save);
+      console.log(this.nominal_save);
+    },
+    delsert: function delsert() {
+      this.serts.splice(event.target.id, 1);
+      this.vklad_save.splice(event.target.id, 1);
+      this.nominal_save.splice(event.target.id, 1);
+    }
+  },
 
-          computed: {},
+  computed: {
+    itog: function itog() {
+      var summ = 0;
+      for (var i = 0; i < this.nominal_save.length; i++) {
+        summ += this.nominal_save[i];
+      }
+      return summ;
+    }
+  },
 
-          filters: {},
-          watch: {}
+  filters: {},
+  watch: {}
 
 });
 
 /***/ }),
-/* 126 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
+      _c(
+        "div",
+        { staticClass: "alert alert-success", attrs: { role: "alert" } },
+        [_vm._v("\n      " + _vm._s(_vm.itog) + "\n    ")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.nick_clienta,
+              expression: "nick_clienta"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Ваш игровой ник" },
+          domProps: { value: _vm.nick_clienta },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.nick_clienta = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group mb-3" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.sert_title,
+              expression: "sert_title"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Введите подарочный код" },
+          domProps: { value: _vm.sert_title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.sert_title = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group-append" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button", id: "" },
+              on: { click: _vm.addSert }
+            },
+            [_vm._v("Добавить")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Добавленные коды:")]),
+      _vm._v(" "),
+      _vm._l(_vm.serts, function(sert, index) {
+        return _c(
+          "div",
+          { staticClass: "input-group mb-3", attrs: { id: index } },
+          [
+            _c("div", { staticClass: "input-group-prepend" }, [
+              _c("label", { staticClass: "input-group-text" }, [
+                _vm._v(_vm._s(_vm.vklad_save[index]))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: sert, readonly: "" },
+              domProps: { value: sert }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group-append" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-secondary",
+                  attrs: { type: "button", id: index },
+                  on: { click: _vm.delsert }
+                },
+                [_vm._v("Удалить")]
+              )
+            ])
+          ]
+        )
+      })
+    ],
+    2
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "input-group mb-3" }, [
-        _c("div", { staticClass: "input-group-prepend" }, [
-          _c(
-            "span",
-            { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
-            [_vm._v("@")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            placeholder: "Имя пользователя",
-            "aria-label": "Имя пользователя",
-            "aria-describedby": "basic-addon1"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group mb-3" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            placeholder: "Имя получателя",
-            "aria-label": "Имя получателя",
-            "aria-describedby": "basic-addon2"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group-append" }, [
-          _c(
-            "span",
-            { staticClass: "input-group-text", attrs: { id: "basic-addon2" } },
-            [_vm._v("@example.com")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "basic-url" } }, [_vm._v("Your vanity URL")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group mb-3" }, [
-        _c("div", { staticClass: "input-group-prepend" }, [
-          _c(
-            "span",
-            { staticClass: "input-group-text", attrs: { id: "basic-addon3" } },
-            [_vm._v("https://example.com/users/")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "basic-url",
-            "aria-describedby": "basic-addon3"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group mb-3" }, [
-        _c("div", { staticClass: "input-group-prepend" }, [
-          _c("span", { staticClass: "input-group-text" }, [_vm._v("$")])
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            "aria-label": "Amount (to the nearest dollar)"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group-append" }, [
-          _c("span", { staticClass: "input-group-text" }, [_vm._v(".00")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("div", { staticClass: "input-group-prepend" }, [
-          _c("span", { staticClass: "input-group-text" }, [
-            _vm._v("With textarea")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          attrs: { "aria-label": "With textarea" }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -59243,6 +59261,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-f978011e", module.exports)
   }
 }
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

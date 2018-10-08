@@ -2,6 +2,9 @@
 <template>
 
   <div class="container-fluid">
+   
+
+
     <h1 >Выберите игру:</h1> <br><br>
       <div class="row">
         <div

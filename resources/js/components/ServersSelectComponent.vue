@@ -3,7 +3,7 @@
 
   <div class="container-fluid">
       <br><br>  <h1>Выберите сервер:</h1> <br><br>
-       <div class="row" v-if="sel_game">
+       <div class="row">
          <div class="dropdown">
    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {{server_title}}
@@ -26,7 +26,7 @@
   </div>
         </div>
   <br><br>
-        <div class="row" v-if="sertdar">
+        <div class="row">
           <div
           class="h2 col-sm list-group-item list-group-item-action"
           @click="selectdar" id="1">
@@ -43,7 +43,7 @@
 
     <br><br>  <h1>Выберите ваш сертификат:</h1> <br><br>
 
-<div class="row" v-if="sel_serv">
+<div class="row">
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -60,30 +60,30 @@
 
     <tr   v-if="sel_darkod == 1">
         <th scope="row">Быстрая</th>
-        <td @click="selectkods" :id="server.vk_300" > {{ server.vk_300}}</td>
-         <td @click="selectkods" :id="server.vk_500"> {{ server.vk_500}}</td>
-           <td @click="selectkods" :id="server.vk_3000"> {{ server.vk_3000}}</td>
+        <td @click="selectkods" :id="1" :abbr="server.vk_300"> {{ server.vk_300}}</td>
+         <td @click="selectkods" :id="2" :abbr="server.vk_500"> {{ server.vk_500}}</td>
+           <td @click="selectkods" :id="3" :abbr="server.vk_3000"> {{ server.vk_3000}}</td>
       </tr>
       <tr   v-if="sel_darkod == 1">
         <th scope="row">Ожидание</th>
-        <td @click="selectkods" :id="server.vk_3001"> {{ server.vk_3001}}</td>
-         <td @click="selectkods" :id="server.vk_5001"> {{ server.vk_5001}}</td>
-           <td @click="selectkods" :id="server.vk_30001"> {{ server.vk_30001}}</td>
+        <td @click="selectkods" :id="11" :abbr="server.vk_3001"> {{ server.vk_3001}}</td>
+         <td @click="selectkods" :id="22" :abbr="server.vk_5001"> {{ server.vk_5001}}</td>
+           <td @click="selectkods" :id="33" :abbr="server.vk_30001"> {{ server.vk_30001}}</td>
 
       </tr>
 
 
       <tr v-if="sel_darkod == 2">
         <th scope="row">Быстрая</th>
-        <td @click="selectkods" :id="server.vk1_300" > {{ server.vk1_300}}</td>
-         <td @click="selectkods" :id="server.vk2_500"> {{ server.vk2_500}}</td>
-           <td @click="selectkods" :id="server.vk3_3000"> {{ server.vk3_3000}}</td>
+        <td @click="selectkods" :id="4" :abbr="server.vk1_300"> {{ server.vk1_300}}</td>
+         <td @click="selectkods" :id="5" :abbr="server.vk2_500"> {{ server.vk2_500}}</td>
+           <td @click="selectkods" :id="6" :abbr="server.vk3_3000"> {{ server.vk3_3000}}</td>
       </tr>
       <tr v-if="sel_darkod == 2">
         <th scope="row">Ожидание</th>
-        <td @click="selectkods" :id="server.vk1_3001"> {{ server.vk1_3001}}</td>
-         <td @click="selectkods" :id="server.vk2_5001"> {{ server.vk2_5001}}</td>
-           <td @click="selectkods" :id="server.vk3_30001"> {{ server.vk3_30001}}</td>
+        <td @click="selectkods" :id="44" :abbr="server.v1_3001"> {{ server.vk1_3001}}</td>
+         <td @click="selectkods" :id="55" :abbr="server.vk2_5001"> {{ server.vk2_5001}}</td>
+           <td @click="selectkods" :id="66" :abbr="server.vk3_30001"> {{ server.vk3_30001}}</td>
 
       </tr>
 
@@ -91,7 +91,7 @@
   </table>
 
 
-  <darkod-component v-if="sel_darkod == 1"> </darkod-component>
+  <darkod-component v-show="sel_darkod == 1" :vklad="vklad" :nominal="nominal"> </darkod-component>
   <daraden-component else> </daraden-component>
 
         </div>
@@ -132,12 +132,14 @@ data: function() {
 return {
 listgames: [],
 select_serv: '',
-select_kod: '',
 servers_id: '',
 sel_serv: false,
 sertdar: false,
-sel_darkod: '',
-server_title: 'Выберите сервер'
+sel_darkod: 1,
+server_title: 'Выберите сервер',
+nominal: '',
+vklad: ''
+
 }
 
 },
@@ -147,6 +149,7 @@ server_title: 'Выберите сервер'
 
 
 selectserv(value) {
+
       this.select_serv = event.target.title  // присвоили название выбранной игры переменной select_game чтоб выводить вместе с игрой в selected()
       this.server_title = event.target.title
       this.servers_id = event.target.id  // присовили ид род сервера в перменную servers_id
@@ -167,9 +170,9 @@ selectserv(value) {
 
 
 selectkods(value) {
-
- this.select_kod = event.target.id
- console.log('Нажали на код' + this.select_kod)
+ this.vklad = event.target.id
+ this.nominal = parseInt(event.target.abbr)
+ console.log('Нажали на код' + this.vklad + ' ' + 'его стоимость ' + parseInt(event.target.abbr))
 
   }
 
@@ -180,7 +183,7 @@ selectkods(value) {
 
   selected() {
 
-    return this.select_game + ' - ' + this.select_serv + ' - ' + this.select_kod
+    return this.select_game + ' - ' + this.select_serv + ' - ' + this.vklad
 
    }
             },
