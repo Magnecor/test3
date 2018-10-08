@@ -3,6 +3,8 @@
 @section('content')
 
 <div class="container">
+<example-component></example-component>
+
 
 <div class="row justify-content-center">
   @foreach ($games as $game)

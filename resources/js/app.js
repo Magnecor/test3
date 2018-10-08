@@ -16,7 +16,15 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
+Vue.component('prob-component', require('./components/ProbComponent.vue'));
+Vue.component('ajax-component', require('./components/AjaxComponent.vue'));
+Vue.component('socketchat-component', require('./components/SocketChatComponent.vue'));
+Vue.component('new-component', require('./components/NewComponent.vue'));
+Vue.component('new1-component', require('./components/New1Component.vue'));
+Vue.component('serversselect-component', require('./components/ServersSelectComponent.vue'));
+Vue.component('gamesselect-component', require('./components/GamesSelectComponent.vue'));
+Vue.component('daraden-component', require('./components/layouts/daradenComponent.vue'));
+Vue.component('darkod-component', require('./components/layouts/darkodComponent.vue'));
 const app = new Vue({
     el: '#app'
 });

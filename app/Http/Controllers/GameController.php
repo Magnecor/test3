@@ -42,11 +42,7 @@ class GameController extends Controller
     {
 
 
-       $games= new \App\Game;
-       $games->title=$request->get('title');
-       $games->sort=$request->get('sort');  
-       $games->save();
-
+        Game::create($request->all());
 
        return redirect('admin/games')->with('success', 'Игра успешно добавлена');  //
     }
@@ -81,13 +77,10 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Game $game)
     {
-      $games= \App\Game::find($id);
-        $games->title=$request->get('title');
-        $games->sort=$request->get('sort');
-        $games->save();
-        return redirect('admin/games');  //
+      $game->update($request->all());//
+        return redirect('admin/games')->with('success', 'Сервер успешно обновлен');  //
     }
 
     /**
@@ -96,10 +89,13 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Game $game)
     {
-      $games = \App\Game::find($id);
-         $games->delete();
-         return redirect('admin/games')->with('success', 'Успешно удалена игра -' . "$games->title");    //
+
+         $game->delete();
+         return redirect('admin/games')->with('success', 'Успешно удалена игра -');    //
     }
+
+    
+
 }
