@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServersTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateServersTable extends Migration
      */
     public function up()
     {
-        Schema::create('servers', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->integer('sort')->nullable();
-            $table->integer('games_id')->unsigned();
+            $table->integer('order_number');
+            $table->integer('summa');
+            $table->string('nick_clienta');
+            $table->string('games');
+            $table->string('server');
+            $table->string('order');
+            $table->string('kods');
             $table->timestamps();
-            $table->foreign('games_id')->references('id')->on('games')->onDelete('cascade');
         });
     }
 
@@ -30,6 +33,6 @@ class CreateServersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('servers');
+        Schema::dropIfExists('orders');
     }
 }

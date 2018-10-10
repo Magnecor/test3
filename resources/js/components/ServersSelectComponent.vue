@@ -89,9 +89,12 @@
 
     </tbody>
   </table>
+  <div class="input-group mb-3">
 
+    <input type="text" class="form-control" placeholder="Ваш игровой ник" v-model.lazy="nick_clienta">
+  </div>
 
-  <darkod-component v-show="sel_darkod == 1" :vklad="vklad" :nominal="nominal"> </darkod-component>
+  <darkod-component v-show="sel_darkod == 1" :vklad="vklad" :nominal="nominal" @spisokkodov="spisokkodov"> </darkod-component>
   <daraden-component else> </daraden-component>
 
         </div>
@@ -103,8 +106,23 @@
 
 </div>
 
+<div class="row">
+  <div
+  class="h2 col-sm list-group-item list-group-item-action"
+  @click="sendserver">
+  Отправить заказ
+ </div>
+
 
   </div>
+
+
+
+
+
+  </div>
+
+
 
 </template>
 
@@ -117,7 +135,8 @@
 
 
     export default {
-      name:'games-component',
+      name:'games-component',   //listservers: {default: function() {return }}
+
       props: [
       'listservers',
      'select_game',
@@ -131,6 +150,7 @@ data: function() {
 
 return {
 listgames: [],
+nick_clienta: '',
 select_serv: '',
 servers_id: '',
 sel_serv: false,
@@ -143,6 +163,7 @@ vklad: ''
 }
 
 },
+
 
 
   methods: {
@@ -174,16 +195,36 @@ selectkods(value) {
  this.nominal = parseInt(event.target.abbr)
  console.log('Нажали на код' + this.vklad + ' ' + 'его стоимость ' + parseInt(event.target.abbr))
 
-  }
+},
+spisokkodov(order, nick_clienta) {
+  alert(order, nick_clienta)
+},
+
+sendserver() {
+  var event = {
+    nick_clienta: "Michael"
+  };
+  var a1 = JSON.stringify(event);
+  console.log(a1)
+  axios.get('/order/get-jsonorder', {
+    a1
+  }).then((res) => {
+  console.log(res.data)
+}).catch((err) => {
+  console.log(err)
+})
+
+}
 
 
             },
+
 
   computed: {
 
   selected() {
 
-    return this.select_game + ' - ' + this.select_serv + ' - ' + this.vklad
+    return this.select_game + ' - ' + this.select_serv + ' - ' + this.vklad + ' - ' +  this.nick_clienta
 
    }
             },

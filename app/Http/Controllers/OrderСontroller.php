@@ -3,23 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Server;
-use App\Game;
+use App\Order;
 
-class GameController extends Controller
+class OrderСontroller extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-
-       return view('games.index', ['games' => Game::get(), 'servers' => Server::get()
-
-
-     ]);  //
+       return view('games.orders', ['orders' => Order::get()]); //
     }
 
     /**
@@ -29,7 +24,7 @@ class GameController extends Controller
      */
     public function create()
     {
-      return view('games.create');  //
+        //
     }
 
     /**
@@ -40,11 +35,7 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        Game::create($request->all());
-
-       return redirect('admin/games')->with('success', 'Игра успешно добавлена');  //
+        //
     }
 
     /**
@@ -53,9 +44,9 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $games)
+    public function show($id)
     {
-        return view('admin/games', ['game' => $game]);//
+        //
     }
 
     /**
@@ -66,8 +57,7 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-      $games = \App\Game::find($id);
-        return view('games.edit',compact('games','id'));  //
+        //
     }
 
     /**
@@ -77,10 +67,9 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
+    public function update(Request $request, $id)
     {
-      $game->update($request->all());//
-        return redirect('admin/games')->with('success', 'Сервер успешно обновлен');  //
+        //
     }
 
     /**
@@ -89,11 +78,17 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function getJsonOrder(Request $request)
     {
 
-         $game->delete();
-         return redirect('admin/games')->with('success', 'Успешно удалена игра -');    //
+     Order::create($request->all());
+
+
     }
 
 

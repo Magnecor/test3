@@ -12,12 +12,16 @@
 */
 Route::resource('admin/games','GameController', ['middleware'=> ['auth']]);
 Route::resource('admin/servers','ServerController', ['middleware'=> ['auth']]);
+Route::resource('admin/orders','OrderСontroller', ['middleware'=> ['auth']]);
+
+
 Route::resource('/','IndexСontroller');
 
 Route::get('/start', 'StartController@index');
 
 Route::get('/start/get-json', 'StartController@getJson');
 Route::get('/start/get-jsongames', 'StartController@getJsonGames');
+Route::get('/order/get-jsonorder', 'OrderController@getJsonOrder');
 Route::get('/start/get-jsonserv', 'StartController@getJsonServ');
 Route::get('/start/socket-chart', 'StartController@newEvent');
 Route::get('/start/send-message', 'StartController@sendMessage');

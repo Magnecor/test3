@@ -2,9 +2,9 @@
 <template>
 
   <div class="container-fluid">
-   
 
 
+  {{this.listservers[0]}} 
     <h1 >Выберите игру:</h1> <br><br>
       <div class="row">
         <div

@@ -58348,16 +58348,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'games-component',
+  name: 'games-component', //listservers: {default: function() {return }}
+
   props: ['listservers', 'select_game', 'games_id', 'sel_game'],
 
   data: function data() {
 
     return {
       listgames: [],
+      nick_clienta: '',
       select_serv: '',
       servers_id: '',
       sel_serv: false,
@@ -58389,13 +58409,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.vklad = event.target.id;
       this.nominal = parseInt(event.target.abbr);
       console.log('Нажали на код' + this.vklad + ' ' + 'его стоимость ' + parseInt(event.target.abbr));
+    },
+    spisokkodov: function spisokkodov(order, nick_clienta) {
+      alert(order, nick_clienta);
+    },
+    sendserver: function sendserver() {
+      var event = {
+        nick_clienta: "Michael"
+      };
+      var a1 = JSON.stringify(event);
+      console.log(a1);
+      axios.get('/order/get-jsonorder', {
+        a1: a1
+      }).then(function (res) {
+        console.log(res.data);
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
   },
 
   computed: {
     selected: function selected() {
 
-      return this.select_game + ' - ' + this.select_serv + ' - ' + this.vklad;
+      return this.select_game + ' - ' + this.select_serv + ' - ' + this.vklad + ' - ' + this.nick_clienta;
     }
   },
 
@@ -58654,6 +58691,28 @@ var render = function() {
           2
         ),
         _vm._v(" "),
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.lazy",
+                value: _vm.nick_clienta,
+                expression: "nick_clienta",
+                modifiers: { lazy: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Ваш игровой ник" },
+            domProps: { value: _vm.nick_clienta },
+            on: {
+              change: function($event) {
+                _vm.nick_clienta = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
         _c("darkod-component", {
           directives: [
             {
@@ -58663,7 +58722,8 @@ var render = function() {
               expression: "sel_darkod == 1"
             }
           ],
-          attrs: { vklad: _vm.vklad, nominal: _vm.nominal }
+          attrs: { vklad: _vm.vklad, nominal: _vm.nominal },
+          on: { spisokkodov: _vm.spisokkodov }
         }),
         _vm._v(" "),
         _c("daraden-component", { attrs: { else: "" } })
@@ -58676,6 +58736,17 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("h2", [_vm._v(_vm._s(_vm.selected))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        {
+          staticClass: "h2 col-sm list-group-item list-group-item-action",
+          on: { click: _vm.sendserver }
+        },
+        [_vm._v("\n  Отправить заказ\n ")]
+      )
     ])
   ])
 }
@@ -58849,6 +58920,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
+    _vm._v("\n\n\n" + _vm._s(this.listservers[0]) + " \n  "),
     _c("h1", [_vm._v("Выберите игру:")]),
     _vm._v(" "),
     _c("br"),
@@ -59095,12 +59167,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
 
     return {
-      nick_clienta: '',
       sert_title: '',
       serts: [],
       vklad_save: [],
       nominal_save: [],
-      summa: ''
+      summa: '',
+      order: []
     };
   },
   created: function created() {},
@@ -59108,17 +59180,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     addSert: function addSert() {
+      this.order.push(this.vklad, this.sert_title, this.nominal);
       this.vklad_save.push(this.vklad);
       this.serts.push(this.sert_title);
       this.nominal_save.push(this.nominal);
+      this.$emit('spisokkodov', this.order);
       console.log(this.serts);
       console.log(this.vklad_save);
       console.log(this.nominal_save);
+      console.log(this.order);
     },
     delsert: function delsert() {
       this.serts.splice(event.target.id, 1);
       this.vklad_save.splice(event.target.id, 1);
       this.nominal_save.splice(event.target.id, 1);
+      this.order.splice(event.target.id * 3, 3);
+      this.$emit('spisokkodov', this.order);
+      console.log(this.serts);
+      console.log(this.vklad_save);
+      console.log(this.nominal_save);
+      console.log(this.order);
     }
   },
 
@@ -59154,30 +59235,6 @@ var render = function() {
         { staticClass: "alert alert-success", attrs: { role: "alert" } },
         [_vm._v("\n      " + _vm._s(_vm.itog) + "\n    ")]
       ),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group mb-3" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.nick_clienta,
-              expression: "nick_clienta"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "Ваш игровой ник" },
-          domProps: { value: _vm.nick_clienta },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.nick_clienta = $event.target.value
-            }
-          }
-        })
-      ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group mb-3" }, [
         _c("input", {
@@ -59225,6 +59282,12 @@ var render = function() {
             _c("div", { staticClass: "input-group-prepend" }, [
               _c("label", { staticClass: "input-group-text" }, [
                 _vm._v(_vm._s(_vm.vklad_save[index]))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group-prepend" }, [
+              _c("label", { staticClass: "input-group-text" }, [
+                _vm._v(_vm._s(_vm.nominal_save[index]))
               ])
             ]),
             _vm._v(" "),
